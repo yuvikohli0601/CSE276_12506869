@@ -1,0 +1,13 @@
+# CivicPulse - Production & Academic Dependencies
+# Course: CSE276 | Problem Statement: SIH25031
+# Author: Yuvi Kohli (Reg: 12506869, Roll: RK3P25ILB43, Group: K3P25IL)
+
+scikit-learn>=1.4.0
+numpy>=1.26.0
+joblib>=1.3.0
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.6.0
+pytest>=8.0.0
+reportlab>=4.0.0
+python-pptx>=0.6.21

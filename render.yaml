@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cse276-12506869
+    runtime: python
+    buildCommand: pip install -r codebase/requirements.txt
+    startCommand: uvicorn codebase.backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8

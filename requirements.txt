@@ -1,0 +1,5 @@
+# CivicPulse - Root Dependencies
+# Course: CSE276 | Problem Statement: SIH25031
+# Author: Yuvi Kohli (Reg: 12506869, Roll: RK3P25ILB43, Group: K3P25IL)
+
+-r codebase/requirements.txt

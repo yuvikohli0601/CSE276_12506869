@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicPulse AI Command | SIH25031</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=3.0">
+</head>
+<body class="skin-dark">
+  <!-- Top Global Navigation Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge">
+        <span class="status-pulse"></span>
+        <div class="brand-title-group">
+          <span class="brand-title">CivicPulse</span>
+          <span class="brand-badge-tag">AI COMMAND OS</span>
+        </div>
+      </div>
+      <div class="header-divider"></div>
+      <div class="academic-tag">
+        <span class="meta-item"><strong>Course:</strong> CSE276</span>
+        <span class="meta-item"><strong>SIH ID:</strong> SIH25031</span>
+        <span class="meta-item"><strong>Author:</strong> Yuvi Kohli (12506869 / RK3P25ILB43)</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Citizen Portal Shortcut -->
+      <a href="/citizen" class="nav-portal-link" title="Open Public Citizen Grievance Portal">
+        <span class="portal-link-icon">🌐</span>
+        <span>Public Citizen Portal</span>
+      </a>
+
+      <!-- Connection Status Chip -->
+      <div class="telemetry-chip" id="connectionStatusChip">
+        <span class="chip-pip chip-pip-online"></span>
+        <span class="chip-text" id="connectionStatusText">API: CONNECTED</span>
+      </div>
+
+      <!-- Dual-Skin Theme Toggle -->
+      <button class="skin-toggle-btn" id="skinToggleBtn" title="Toggle between Pro Operations Dark Skin and Academic Light Skin">
+        <svg class="theme-icon icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <span id="skinLabel">Skin: Pro Dark Ops</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-layout">
+    <!-- Navigation Tabs -->
+    <nav class="nav-tab-strip">
+      <button class="nav-tab active" data-tab="triageTab">
+        <span class="tab-icon">⚡</span> Report Issue & Triage Workbench
+      </button>
+      <button class="nav-tab" data-tab="queueTab">
+        <span class="tab-icon">📋</span> Priority Dispatch Queue
+        <span class="tab-count-badge" id="queueCountBadge">30</span>
+      </button>
+      <button class="nav-tab" data-tab="auditTab">
+        <span class="tab-icon">🛡️</span> Immutable Audit Ledger
+      </button>
+      <button class="nav-tab" data-tab="telemetryTab">
+        <span class="tab-icon">📊</span> Model Telemetry & Matrix
+      </button>
+    </nav>
+
+    <!-- TAB 1: ISSUE REPORTING & TRIAGE WORKBENCH -->
+    <section class="tab-content active" id="triageTab">
+      <div class="workbench-grid">
+        <!-- Input Form Card -->
+        <div class="panel-card input-panel">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">Report Civic Grievance</h2>
+              <p class="panel-subtitle">Stage 1 NLP Preprocessing & Data Quality Gate</p>
+            </div>
+            <span class="live-dot-badge">LIVE GATE</span>
+          </div>
+
+          <!-- Quick Templates Bar -->
+          <div class="template-selector-box">
+            <span class="template-label">Preset Indian Civic Grievance Templates:</span>
+            <div class="template-buttons">
+              <button type="button" class="template-btn" data-preset="electric_school">⚡ 11kV Wire near School</button>
+              <button type="button" class="template-btn" data-preset="water_sinkhole">🚰 Pipe Burst Sinkhole</button>
+              <button type="button" class="template-btn" data-preset="dengue_outbreak">🦟 Dengue Larvae Vector</button>
+              <button type="button" class="template-btn" data-preset="garbage_dhalao">🗑️ Dhalao Overflow</button>
+              <button type="button" class="template-btn" data-preset="oov_spam">⚠️ Spam Gibberish Check</button>
+            </div>
+          </div>
+
+          <form id="grievanceForm" class="triage-form">
+            <div class="form-group">
+              <label for="wardInput" class="form-label">Ward Location & Landmark</label>
+              <input type="text" id="wardInput" class="form-input" value="Ward 04 - Civil Lines (near Civil Hospital Gate 2)" placeholder="e.g. Ward 19 - Rohini Sector 9 near Govt School" required>
+            </div>
+
+            <div class="form-group">
+              <label for="complaintTextInput" class="form-label">Grievance Narrative (Type to see AI Auto-Classify in real time)</label>
+              <textarea id="complaintTextInput" class="form-textarea" rows="4" placeholder="Describe the civic issue with landmarks, duration, and safety hazards..." required>High voltage 11kV electrical wire snapped and hanging loose just 4 feet above ground level near Civil Hospital Gate 2. Live current sparking violently, extreme fatal electrocution hazard!</textarea>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="upvotesInput" class="form-label">Citizen Community Upvotes</label>
+                <input type="number" id="upvotesInput" class="form-input mono" value="48" min="0" max="1000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Pre-Inference Quality Gate</label>
+                <div class="dq-status-indicator" id="dqInlineIndicator">
+                  <span class="dq-pip dq-pip-pass"></span>
+                  <span class="dq-text" id="dqInlineText">DQ_PASS (Chars: 172 | Tokens: 24)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="analyzeBtn" class="btn btn-secondary">
+                <span class="btn-icon">🔬</span> Run Mathematical Analysis
+              </button>
+              <button type="submit" id="dispatchBtn" class="btn btn-primary">
+                <span class="btn-icon">🚀</span> Dispatch to Queue (SQLite)
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Inference Diagnostics Card -->
+        <div class="panel-card output-panel">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">Multi-Stage Routing Telemetry</h2>
+              <p class="panel-subtitle">Real-time NLP Probabilities, Entropy & Urgency Calibration</p>
+            </div>
+            <span class="latency-badge" id="latencyBadge">LATENCY: 0.8 ms</span>
+          </div>
+
+          <div class="telemetry-body">
+            <!-- Classification Header Row -->
+            <div class="telemetry-hero-row">
+              <div class="metric-box hero-metric">
+                <span class="metric-label">Predicted Department</span>
+                <span class="dept-chip" id="triageDeptChip" data-dept="ELECTRICAL">ELECTRICAL</span>
+              </div>
+              <div class="metric-box hero-metric">
+                <span class="metric-label">Urgency Score (U ∈ [0, 100])</span>
+                <div class="urgency-num-group">
+                  <span class="urgency-num mono" id="triageUrgencyNum">96.0</span>
+                  <span class="urgency-tier-badge tier-critical" id="triageUrgencyBadge">CRITICAL (4h SLA)</span>
+                </div>
+              </div>
+              <div class="metric-box hero-metric">
+                <span class="metric-label">Human-in-the-Loop Gate</span>
+                <span class="hitl-badge hitl-pass" id="triageHitlBadge">AUTO-DISPATCHED</span>
+              </div>
+            </div>
+
+            <!-- Mathematical Vector Diagnostics -->
+            <div class="metrics-grid-4">
+              <div class="sub-metric">
+                <span class="sub-label">Top-1 Confidence (C)</span>
+                <span class="sub-val mono" id="metricTop1Conf">99.8%</span>
+              </div>
+              <div class="sub-metric">
+                <span class="sub-label">Top-2 Margin (ΔP)</span>
+                <span class="sub-val mono" id="metricTop2Margin">99.7%</span>
+              </div>
+              <div class="sub-metric">
+                <span class="sub-label">Normalized Entropy H(P)</span>
+                <span class="sub-val mono" id="metricEntropy">0.01 / 1.0</span>
+              </div>
+              <div class="sub-metric">
+                <span class="sub-label">Hazard Keyword Bonus (S)</span>
+                <span class="sub-val mono" id="metricHazardBonus">+38 pts</span>
+              </div>
+            </div>
+
+            <!-- Real-time Class Probabilities Breakdown -->
+            <div class="prob-section">
+              <div class="section-subhead">
+                <span>Multi-Class Softmax Probability Distribution</span>
+                <span class="subhead-tag">K = 5 Departments</span>
+              </div>
+              <div class="prob-bars-container" id="probBarsContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Token Feature Attribution (Explainability) -->
+            <div class="explainability-section">
+              <div class="section-subhead">
+                <span>Linear Feature Attribution (Top Contributing N-grams)</span>
+                <span class="subhead-tag">score = TFIDF(w) × W(dept, w)</span>
+              </div>
+              <div class="token-cloud" id="tokenAttributionCloud">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Mathematical Audit Formula Breakdown -->
+            <div class="formula-breakdown-box">
+              <span class="formula-title">Deterministic Urgency Formula:</span>
+              <div class="formula-math mono">
+                U = clip( (W_dept[<span id="fDept">30</span>] + S_hazard[<span id="fHazard">38</span>] + V_zone[<span id="fZone">18</span>] + Upvotes[<span id="fUpvotes">10.0</span>]) × φ(C)[<span id="fPhi">1.0</span>], 0, 100 ) = <strong id="fTotal">96.0</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: PRIORITY DISPATCH QUEUE -->
+    <section class="tab-content" id="queueTab">
+      <div class="panel-card">
+        <div class="panel-header queue-header">
+          <div class="panel-title-group">
+            <h2 class="panel-title">Active Municipal Dispatch Queue</h2>
+            <p class="panel-subtitle">Ranked by Critical Safety Escalations, Urgency Score Descending & SLA Aging</p>
+          </div>
+
+          <!-- Filters -->
+          <div class="queue-filters">
+            <select id="filterDept" class="filter-select">
+              <option value="ALL">All Departments</option>
+              <option value="WATER">Water Supply & Sewage</option>
+              <option value="ROADS">Roads & Civil Infrastructure</option>
+              <option value="ELECTRICAL">Electrical & Power</option>
+              <option value="SANITATION">Solid Waste & Sanitation</option>
+              <option value="HEALTH">Public Health & Vectors</option>
+            </select>
+            <select id="filterTier" class="filter-select">
+              <option value="ALL">All Urgency Tiers</option>
+              <option value="CRITICAL">Critical (4h SLA)</option>
+              <option value="HIGH">High (12h SLA)</option>
+              <option value="MEDIUM">Medium (24h SLA)</option>
+              <option value="LOW">Low (48h SLA)</option>
+            </select>
+            <button type="button" id="btnFilterHitl" class="filter-pill-btn">
+              ⚠️ Needs Review Only
+            </button>
+            <button type="button" id="btnRefreshQueue" class="btn btn-secondary btn-sm">
+              ↻ Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="priorityQueueTable">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Ward & Location</th>
+                <th>Complaint Narrative</th>
+                <th>Department</th>
+                <th>Urgency (U)</th>
+                <th>SLA Timer</th>
+                <th>HITL Status</th>
+                <th>Governance</th>
+              </tr>
+            </thead>
+            <tbody id="queueTableBody">
+              <!-- Dynamically populated from SQLite -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: IMMUTABLE AUDIT LEDGER -->
+    <section class="tab-content" id="auditTab">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 class="panel-title">Immutable Human-in-the-Loop Audit Trail</h2>
+            <p class="panel-subtitle">Cryptographically Traceable Human Overrides & Operator Justifications</p>
+          </div>
+          <span class="audit-counter-badge" id="auditCounterBadge">0 Overrides Logged</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="auditLedgerTable">
+            <thead>
+              <tr>
+                <th>Audit Timestamp</th>
+                <th>Ticket ID</th>
+                <th>Operator ID</th>
+                <th>Reason Code</th>
+                <th>Routing Shift</th>
+                <th>Urgency Shift</th>
+                <th>Diagnostic Notes</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: MODEL TELEMETRY & MATRIX -->
+    <section class="tab-content" id="telemetryTab">
+      <div class="telemetry-grid">
+        <!-- Model Comparison Card -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">Model Architecture Benchmarking</h2>
+              <p class="panel-subtitle">80/20 Stratified Split on 1,500 Real-World Civic Complaints</p>
+            </div>
+            <span class="benchmark-tag">ACADEMIC AUDIT CO3/CO4</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table comparison-table">
+              <thead>
+                <tr>
+                  <th>Model Architecture</th>
+                  <th>Accuracy</th>
+                  <th>Macro Precision</th>
+                  <th>Macro Recall</th>
+                  <th>Macro F1</th>
+                  <th>Single Latency</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="modelComparisonTableBody">
+                <!-- Dynamically populated from metrics.json -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Confusion Matrix Card -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">Held-Out Confusion Matrix (5×5)</h2>
+              <p class="panel-subtitle">Evaluated on Held-out Municipal Complaints Across 5 Target Sectors</p>
+            </div>
+            <span class="cm-tag mono" id="cmSummaryTag">Accuracy: 99.7%</span>
+          </div>
+
+          <div class="cm-wrapper" id="confusionMatrixContainer">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: CITIZEN DISPATCH RECEIPT SLIP -->
+  <div class="modal-backdrop" id="receiptModal">
+    <div class="modal-dialog receipt-dialog">
+      <div class="receipt-header">
+        <div class="receipt-seal">🏛️</div>
+        <div>
+          <h3 class="receipt-title">MUNICIPAL GRIEVANCE DISPATCH RECEIPT</h3>
+          <p class="receipt-subtitle">CivicPulse Automated Intelligent Routing System</p>
+        </div>
+      </div>
+      <div class="receipt-body">
+        <div class="receipt-badge-row">
+          <span class="receipt-tkt-id mono" id="rcptTicketId">CP-TKT-2026-0001</span>
+          <span class="receipt-status-pill" id="rcptStatus">DISPATCHED</span>
+        </div>
+        <div class="receipt-grid">
+          <div class="rcpt-item">
+            <span class="rcpt-label">Target Municipal Department</span>
+            <span class="dept-chip" id="rcptDept" data-dept="ELECTRICAL">ELECTRICAL</span>
+          </div>
+          <div class="rcpt-item">
+            <span class="rcpt-label">Priority Urgency Tier</span>
+            <span class="urgency-tier-badge tier-critical" id="rcptTier">CRITICAL</span>
+          </div>
+          <div class="rcpt-item">
+            <span class="rcpt-label">Statutory Resolution SLA</span>
+            <span class="rcpt-val mono" id="rcptSla">4 Hours</span>
+          </div>
+          <div class="rcpt-item">
+            <span class="rcpt-label">Jurisdiction Ward</span>
+            <span class="rcpt-val" id="rcptWard">Ward 04 - Civil Lines</span>
+          </div>
+        </div>
+        <div class="rcpt-narrative-box">
+          <span class="rcpt-label">Registered Grievance Narrative</span>
+          <p class="rcpt-text" id="rcptText"></p>
+        </div>
+      </div>
+      <div class="receipt-actions">
+        <button type="button" class="btn btn-secondary" id="rcptNewBtn">Report Another Grievance</button>
+        <button type="button" class="btn btn-primary" id="rcptViewQueueBtn">View Live in Priority Queue &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: HUMAN OVERRIDE WORKFLOW -->
+  <div class="modal-backdrop" id="overrideModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 class="modal-title">Human-in-the-Loop Manual Override</h3>
+          <p class="modal-subtitle">Governance Audit Compliance Workflow</p>
+        </div>
+        <button class="modal-close-btn" id="closeOverrideModalBtn">&times;</button>
+      </div>
+
+      <form id="overrideForm" class="modal-form">
+        <input type="hidden" id="overrideTicketId">
+
+        <div class="modal-meta-row">
+          <div class="meta-field">
+            <span class="meta-label">Ticket ID:</span>
+            <span class="meta-val mono" id="modalTicketId">CP-2026-0001</span>
+          </div>
+          <div class="meta-field">
+            <span class="meta-label">Original Dept:</span>
+            <span class="meta-val" id="modalOrigDept">ROADS</span>
+          </div>
+          <div class="meta-field">
+            <span class="meta-label">Original Tier:</span>
+            <span class="meta-val" id="modalOrigTier">HIGH</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="operatorIdInput" class="form-label">Operator Badge / Official ID <span class="req">*</span></label>
+          <input type="text" id="operatorIdInput" class="form-input mono" placeholder="e.g. OP-DELHI-4421" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reasonCodeSelect" class="form-label">Mandatory Reason Code <span class="req">*</span></label>
+          <select id="reasonCodeSelect" class="form-select" required>
+            <option value="AMBIGUOUS_MULTI_DEPT">AMBIGUOUS_MULTI_DEPT (Cross-department issue)</option>
+            <option value="FALSE_POSITIVE_HAZARD">FALSE_POSITIVE_HAZARD (Keyword not safety threat in context)</option>
+            <option value="FIELD_VERIFIED_ESCALATION">FIELD_VERIFIED_ESCALATION (Inspector verified ground severity)</option>
+            <option value="OOV_REGIONAL_TERM">OOV_REGIONAL_TERM (Regional dialect term not recognized by model)</option>
+          </select>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="overrideDeptSelect" class="form-label">New Target Department</label>
+            <select id="overrideDeptSelect" class="form-select">
+              <option value="WATER">WATER (Water Supply & Sewage)</option>
+              <option value="ROADS">ROADS (Roads, Potholes & Civil)</option>
+              <option value="ELECTRICAL">ELECTRICAL (Streetlights, Power)</option>
+              <option value="SANITATION">SANITATION (Solid Waste, Garbage)</option>
+              <option value="HEALTH">HEALTH (Public Health & Vectors)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="overrideTierSelect" class="form-label">New Urgency Tier</label>
+            <select id="overrideTierSelect" class="form-select">
+              <option value="CRITICAL">CRITICAL (4h SLA)</option>
+              <option value="HIGH">HIGH (12h SLA)</option>
+              <option value="MEDIUM">MEDIUM (24h SLA)</option>
+              <option value="LOW">LOW (48h SLA)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="overrideNotes" class="form-label">Diagnostic Override Notes</label>
+          <textarea id="overrideNotes" class="form-textarea" rows="2" placeholder="Explain the ground reality justification for audit verification..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelOverrideBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="confirmOverrideBtn">Confirm & Log to Audit Ledger</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/app.js?v=3.0"></script>
+</body>
+</html>

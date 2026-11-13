@@ -1,0 +1,5 @@
+model_name,accuracy,macro_precision,macro_recall,macro_f1,weighted_f1,latency_ms,train_time_ms
+Multinomial Naive Bayes,0.9967,0.9967,0.9967,0.9967,0.9967,0.001,2.44
+Complement Naive Bayes,0.9967,0.9967,0.9967,0.9967,0.9967,0.001,2.44
+Calibrated Softmax Classifier,0.9967,0.9967,0.9967,0.9967,0.9967,0.001,210.13
+DistilBERT Transformer (GPU Reference),0.9533,0.9542,0.953,0.9535,0.9534,14.82,182400.0

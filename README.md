@@ -105,14 +105,6 @@ python app.py
 ```
 Open **`http://127.0.0.1:8000`** in your browser to interact with the Dual-Skin Dashboard.
 
-### Step 7: Generate PDF Report & PPTX Slides
-```bash
-cd ../../docs
-python build_report_and_ppt.py
-```
-
----
-
 ## 🔬 Core Mathematical Formulations (Viva Defense)
 
 ### 1. Deterministic Additive Urgency Formulation ($U \in [0, 100]$)

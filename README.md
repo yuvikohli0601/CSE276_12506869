@@ -105,7 +105,7 @@ python app.py
 ```
 Open **`http://127.0.0.1:8000`** in your browser to interact with the Dual-Skin Dashboard.
 
-## 🔬 Core Mathematical Formulations (Viva Defense)
+## 🔬 Core Mathematical Formulations
 
 ### 1. Deterministic Additive Urgency Formulation ($U \in [0, 100]$)
 $$U = \text{clip}\Big( \big( W_{\text{dept}} + S_{\text{hazard}} + V_{\text{zone}} + \min(10, 2\log_2(1 + \text{upvotes})) \big) \times \phi(C), \; 0, \; 100 \Big)$$
